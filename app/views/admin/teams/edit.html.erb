@@ -1,0 +1,31 @@
+<div class="card-body shadow m-5">
+  <%= form_for [:admin, @team], html: { multipart: true, "data-parsley-validate" => "", class: "scaleAppear form-section"} do |f| %>
+    <% if @team.errors.any? %>
+      <div>
+        <ul>
+          <% @team.errors.each do |key, value| %>
+            <li>
+              <%= "#{key.to_s.humanize} #{value}" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+      <div class="row">
+        <div class="col-sm-12">
+          <h6>Team ID</h6>
+          <%= f.text_field :team_id, required: true, "data-parsley-error-message": "Please enter the title.", class: "form-control" %>
+        </div>
+        <div class="col-sm-12 mt-4">
+          <h6>Name</h6>
+          <%= f.text_field :name, required: true, "data-parsley-error-message": "Please enter the title.", class: "form-control" %>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-sm-12">
+          <%= link_to 'Back', admin_teams_path, class: 'btn btn-secondary' %>
+          <%= f.submit class: 'btn btn-primary float-right' %>
+        </div>
+      </div>
+  <% end %>
+</div>

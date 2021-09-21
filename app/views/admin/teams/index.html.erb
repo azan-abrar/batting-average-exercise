@@ -1,0 +1,36 @@
+<div class="row col-md-12 px-5">
+  <div class="col-md-12 float-right">
+    <%= link_to 'Create Teams', new_admin_team_path, class: 'btn btn-success float-right my-5' %>
+  </div>
+  <% if @teams.any? %>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" width="10%" %>#</th>
+            <th scope="col" width="30%" >Team ID</th>
+            <th scope="col" width="30%" >Name</th>
+            <th scope="col" width="30%" >Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @teams.each_with_index do |team, index|%>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= team.team_id %></td>
+              <td><%= team.name %></td>
+              <td>
+                <%= link_to edit_admin_team_path(team), class: "btn btn-xs btn-primary" do %>
+                  <i class="fa fa-pencil"></i>
+                <% end %>
+                <%= link_to admin_team_path(team), method: :delete,  data: {confirm: 'Are you sure?'}, class: "btn btn-xs btn-danger" do %>
+                  <i class="fa fa-times"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  <% else %>
+    <h1>No Teams Here!</h1>
+  <% end %>
+</div>

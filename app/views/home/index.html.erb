@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <%= text_field_tag :year, nil, class: 'year_filter form-control', placeholder: 'search by year' %>
+    </div>
+    <div class="col-md-6">
+      <%= text_field_tag :team_name, nil, class: 'team_filter form-control', placeholder: 'search by team name' %>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <div id="battings_table" style=" display: contents; ">
+        <%= render 'batting_average_table', battings: @battings %>
+      </div>
+    </div>
+  </div>
+</div>
