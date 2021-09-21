@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BattingAverageTest < ActiveSupport::TestCase
+class PlayerRecordTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

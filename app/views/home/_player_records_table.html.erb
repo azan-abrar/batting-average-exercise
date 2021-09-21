@@ -1,0 +1,31 @@
+<% if player_records.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" width="20%" >PlayerID</th>
+        <th scope="col" width="20%" >Player Ranking</th>
+        <th scope="col" width="20%" >YearID</th>
+        <th scope="col" width="20%" >Team Name(s)</th>
+        <th scope="col" width="20%" >Batting Average</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% prev_player_ranking = 0 %>
+      <% prev_player_average = 0 %>
+      <% player_records.each_with_index do |b, index|%>
+        <% player_ranking = calculate_player_ranking(prev_player_ranking, prev_player_average, (index+1), b.batting_average) %>
+        <tr>
+          <td><%= b.player_id %></td>
+          <td><%= player_ranking %></td>
+          <td><%= b.year_id %></td>
+          <td><%= b.teams %></td>
+          <td><%= number_with_precision(b.batting_average, precision: 3) %></td>
+        </tr>
+        <% prev_player_ranking = player_ranking %>
+        <% prev_player_average = b.batting_average %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  No Batting Averages Here!
+<% end %>

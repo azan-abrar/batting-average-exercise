@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboard#index'
     resources :teams, except: %i[show]
-    resources :batting_averages, except: %i[show]
+    resources :player_records, except: %i[show]
   end
 end

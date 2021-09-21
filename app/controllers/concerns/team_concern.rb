@@ -2,6 +2,8 @@ module TeamConcern
   extend ActiveSupport::Concern
 
   included do
+    has_many :batting_records
+
     require 'csv'
 
     extend FriendlyId
@@ -14,8 +16,8 @@ module TeamConcern
     class << self
       def parse_csv(file)
         CSV.foreach(file.path, :headers => true, :converters => :all, :header_converters => lambda { |h| process_headers(h) }) do |row|
-          find_or_create_by(name: row.dig('name')) do |team|
-            team.team_id = row&.dig('team_id')
+          find_or_create_by!(name: row.dig('name')&.strip) do |team|
+            team.team_id = row&.dig('team_id')&.strip
           end
         end
       end

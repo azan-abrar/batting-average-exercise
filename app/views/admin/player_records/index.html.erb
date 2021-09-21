@@ -1,0 +1,41 @@
+<div class="row col-md-12 px-5">
+  <div class="col-md-12 float-right">
+    <%= link_to 'Create Player Records', new_admin_player_record_path, class: 'btn btn-success float-right my-5' %>
+  </div>
+  <% if @player_records.any? %>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" width="5%" %>#</th>
+            <th scope="col" width="10%" >PlayerID</th>
+            <th scope="col" width="10%" >YearID</th>
+            <th scope="col" width="20%" >Team Name(s)</th>
+            <th scope="col" width="10%" >Hits</th>
+            <th scope="col" width="10%" >At Bats</th>
+            <th scope="col" width="25%" >Batting Average</th>
+            <th scope="col" width="10%" >Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @player_records.each_with_index do |ba, index|%>
+            <tr>
+              <td><%= ba.id %></td>
+              <td><%= ba.player_id %></td>
+              <td><%= ba.year_id %></td>
+              <td><%= ba.teams %></td>
+              <td><%= ba.hits %></td>
+              <td><%= ba.at_bats %></td>
+              <td><%= number_with_precision(ba.batting_average, precision: 3) %></td>
+              <td>
+                <%= link_to admin_player_record_path(ba), method: :delete,  data: {confirm: 'Are you sure?'}, class: "btn btn-xs btn-danger" do %>
+                  <i class="fa fa-times"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  <% else %>
+    <h1>No Player Records Here!</h1>
+  <% end %>
+</div>

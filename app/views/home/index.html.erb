@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row mt-5">
+    <h1>Top 20 Players List</h1>
+  </div>
+  <div class="row mt-5">
     <div class="col-md-6">
       <%= text_field_tag :year, nil, class: 'year_filter form-control', placeholder: 'search by year' %>
     </div>
@@ -9,8 +12,8 @@
   </div>
   <div class="row mt-3">
     <div class="col-md-12">
-      <div id="battings_table" style=" display: contents; ">
-        <%= render 'batting_average_table', battings: @battings %>
+      <div id="player_records_table" style=" display: contents; ">
+        <%= render 'player_records_table', player_records: @player_records %>
       </div>
     </div>
   </div>
